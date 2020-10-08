@@ -63,7 +63,15 @@
     --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
     --global-input-focus-borderColor: var(--global-color-alpha);
     --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+
+    --global-toggle-backgroundColor: #F5F6FA;
+    --global-toggle-borderColor: #E2E3E7;
+    --global-toggle-foregroundColor: #FFFFFF;
+    --global-toggle-checked-backgroundColor: #3385FF;
+    --global-toggle-focus-boxShadow : 0 0 0 3px rgba(51,133,255,0.2);
+    --global-toggle-boxShadow: 0 0 0 2px rgba(0,0,0,0.16)
 }
+
 
 /*------------------------------------*\
 #GENERIC
@@ -451,6 +459,12 @@ input::placeholder {
     list-style: none;
     padding: 0;
 }
+.c-option-list{
+    margin-bottom: 24px;
+}
+.c-option-list__item{
+    margin-bottom: 12px;
+}
 
 /*
     Object: Button reset
@@ -641,16 +655,19 @@ input::placeholder {
 .c-custom-option{
     display: flex;
     flex-direction: row;
+    --custom-option-borderColor: var(--global-input-borderColor);
+    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+    --custom-option-hover-borderColor: var(--global-input-hover-borderColor);
 }
 .c-custom-option__fake-input{
     display: flex;
     width: 16px;
     height: 16px;
-    border: solid 1px var(--global-input-borderColor);
+    border: solid 1px var(--custom-option-borderColor);
     margin-right: 4px;
 }
 .c-custom-option__fake-input:hover{
-    border-color: var(--global-input-hover-borderColor);
+    border-color: var(--custom-option-hover-borderColor);
 }
 .c-custom-option__fake-input:active,
 .c-custom-option__fake-input:focus{
@@ -739,6 +756,106 @@ input::placeholder {
 .c-button:active {
     background-color: var(--global-color-alpha-dark);
     box-shadow: none;
+}
+
+
+
+
+
+.c-custom-toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--global-whitespace);
+}
+
+.c-custom-toggle__fake-input {
+    display: block;
+    width: 48px;
+    height: 24px;
+    margin-right: var(--global-whitespace-md);
+
+    background-color: var(--global-toggle-backgroundColor);
+    border: 1px solid var(--global-toggle-borderColor);
+    border-radius: 24px;
+}
+
+.c-custom-toggle__fake-input::after {
+    content: "";
+    display: block;
+
+    width: 21.5px;
+    height: 21.5px;
+    border-radius: 50%;
+
+    background-color: var(--global-toggle-foregroundColor);
+    box-shadow: var(--global-toggle-boxShadow);
+
+    transition: all var(--global-transitionTiming-alpha);
+}
+
+.c-option--hidden:focus + .c-custom-toggle .c-custom-toggle__fake-input {
+    border-color: var(--global-color-alpha-x-light);
+    box-shadow: var(--global-toggle-focus-boxShadow);
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input {
+    background-color: var(--global-toggle-checked-backgroundColor);
+    border-color: var(--global-toggle-checked-borderColor);
+}
+
+.c-option--hidden:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    transform: translateX(24px);
+}
+
+.c-toggle-list__item{
+    margin-right: 0px;
+}
+
+.c-toggle-list__item + .c-toggle-list__item{
+    padding-top: 13px;
+    border-top: solid 1px #E2E3E7;
+}
+
+.c-custom-toggle--inverted{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+
+.c-custom-select {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.c-custom-select__input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    border-radius: var(--global-borderRadius);
+    color: var(--global-input-color);
+    background-color: var(--global-input-backgroundColor);
+    font-family: inherit;
+    font-size: 16px;
+    line-height: calc(var(--global-baseline) * 3);
+    padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
+    outline: none;
+    transition: border var(--global-transition-timing-alpha);
+}
+
+.c-custom-select__symbol {
+    width: 24px;
+    height: 24px;
+
+    position: absolute;
+    right: 12px;
+    top: 12px;
+
+    pointer-events: none;
 }
 
 /*------------------------------------*\
@@ -1084,6 +1201,22 @@ No media query since this is the default in mobile first design
     Inlined to avoid the additional HTTP request:
     http://www.phpied.com/delay-loading-your-print-css/
 */
+@media (prefers-color-scheme:dark){
+    html{
+        background-color: var(--global-color-neutral-xxxx-dark);
+    }
+    .c-logo__path--1,
+    .c-logo__path--2,
+    .c-logo__path--3{
+        fill: white;
+    }
+    .c-input{
+        background-color: var(--global-color-neutral-xxxx-dark);
+    }
+    .c-card{
+        background-color: var(--global-color-neutral-xxx-dark);
+    }
+}
 
 @media print {
     *,
