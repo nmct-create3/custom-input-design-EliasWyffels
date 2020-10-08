@@ -69,10 +69,33 @@
     --global-toggle-foregroundColor: #FFFFFF;
     --global-toggle-checked-backgroundColor: #3385FF;
     --global-toggle-focus-boxShadow : 0 0 0 3px rgba(51,133,255,0.2);
-    --global-toggle-boxShadow: 0 0 0 2px rgba(0,0,0,0.16)
+    --global-toggle-boxShadow: 0 0 0 2px rgba(0,0,0,0.16);
+
+    --global-page-color: var(--global-color-neutral-xxx-dark);
+    --global-page-backgroundColor: var(--global-color-neutral-xxxx-light);
+
+    --logo-path-1: var(--global-color-neutral-xxx-dark);
+    --logo-path-2: var(--global-color-alpha);
+    --logo-path-3: var(--global-color-alpha-x-dark);
+
+    --global-card-background: white;
+    --global-footer-bordercolor: var(--global-color-neutral-xxx-light);
 }
 
-
+@media (prefers-color-scheme:dark){
+    :root{
+        --global-page-backgroundColor: var(--global-color-neutral-xxxx-dark);
+        --global-page-color: White;
+        --logo-path-1: white;
+        --logo-path-2: white;
+        --logo-path-3: white;
+        --global-input-backgroundColor: var(--global-color-neutral-xxxx-dark);
+        --global-input-color: white;
+        --global-card-background: var(--global-color-neutral-xxx-dark);
+        --global-input-borderColor: var(--global-color-neutral-xxx-dark);
+        --global-footer-bordercolor: var(--global-color-neutral-xxxx-dark);
+    }
+}
 /*------------------------------------*\
 #GENERIC
 \*------------------------------------*/
@@ -87,8 +110,8 @@ html {
     font-size: 16px;
     line-height: 1.5;
     font-family: "Inter Web", Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: var(--global-color-neutral-xxxx-light);
+    color: var(--global-page-color);
+    background-color: var(--global-page-backgroundColor);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
@@ -535,15 +558,15 @@ input::placeholder {
 }
 
 .c-logo__path--1 {
-    fill: var(--global-color-neutral-xxxx-dark);
+    fill: var(--logo-path-1);
 }
 
 .c-logo__path--2 {
-    fill: var(--global-color-alpha);
+    fill: var(--logo-path-2);
 }
 
 .c-logo__path--3 {
-    fill: var(--color-alpha-x-dark);
+    fill: var(--logo-path-3);
 }
 
 /*
@@ -553,7 +576,7 @@ input::placeholder {
 */
 
 .c-card {
-    background-color: White;
+    background-color: var(--global-card-background);
     margin-bottom: var(--global-whitespace);
     border-radius: var(--global-borderRadius);
     box-shadow: 0 0 0 var(--global-borderWidth) rgba(0,0,0, 0.05), 0 2px 4px rgba(0,0,0,.075);
@@ -568,7 +591,7 @@ input::placeholder {
 
 .c-card__footer {
     text-align: center;
-    border-top: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
+    border-top: var(--global-borderWidth) solid var(--global-footer-bordercolor);
 }
 
 .c-card__title {
@@ -665,6 +688,7 @@ input::placeholder {
     height: 16px;
     border: solid 1px var(--custom-option-borderColor);
     margin-right: 4px;
+    background-color: var(--global-input-backgroundColor);
 }
 .c-custom-option__fake-input:hover{
     border-color: var(--custom-option-hover-borderColor);
@@ -718,7 +742,7 @@ input::placeholder {
     font-size: 14px;
     padding-bottom: var(--global-whitespace-xs);    
     line-height: calc(var(--global-baseline) * 2);
-    color: var(--global-color-neutral-xx-dark);
+    color: var(--global-page-color);
 }
 
 .c-label--option {
@@ -774,7 +798,7 @@ input::placeholder {
     height: 24px;
     margin-right: var(--global-whitespace-md);
 
-    background-color: var(--global-toggle-backgroundColor);
+    background-color: var(--global-input-backgroundColor);
     border: 1px solid var(--global-toggle-borderColor);
     border-radius: 24px;
 }
@@ -1201,22 +1225,7 @@ No media query since this is the default in mobile first design
     Inlined to avoid the additional HTTP request:
     http://www.phpied.com/delay-loading-your-print-css/
 */
-@media (prefers-color-scheme:dark){
-    html{
-        background-color: var(--global-color-neutral-xxxx-dark);
-    }
-    .c-logo__path--1,
-    .c-logo__path--2,
-    .c-logo__path--3{
-        fill: white;
-    }
-    .c-input{
-        background-color: var(--global-color-neutral-xxxx-dark);
-    }
-    .c-card{
-        background-color: var(--global-color-neutral-xxx-dark);
-    }
-}
+
 
 @media print {
     *,
